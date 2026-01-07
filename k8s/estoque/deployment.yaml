@@ -1,27 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pedidos-service
+  name: estoque-service
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: pedidos
+      app: estoque
   template:
     metadata:
       labels:
-        app: pedidos
+        app: estoque
     spec:
       containers:
-        - name: pedidos
-          image: luiza/pedidos-service:v1.0.0
+        - name: estoque
+          image: luiza/estoque-service:v1.0.0
           ports:
             - containerPort: 8080
           env:
             - name: DB_HOST
               valueFrom:
                 configMapKeyRef:
-                  name: pedidos-config
+                  name: estoque-config
                   key: db_host
           readinessProbe:
             httpGet:
