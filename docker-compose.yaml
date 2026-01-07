@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  api-gateway:
+    build: ./services/api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - pedidos
+    networks:
+      - loja-veloz-net
+
+  pedidos:
+    build: ./services/pedidos-service
+    environment:
+      - DB_HOST=postgres
+    depends_on:
+      - postgres
+    networks:
+      - loja-veloz-net
+
+  pagamentos:
+    build: ./services/pagamentos-service
+    networks:
+      - loja-veloz-net
+
+  estoque:
+    build: ./services/estoque-service
+    networks:
+      - loja-veloz-net
+
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB=loja
+      POSTGRES_USER=admin
+      POSTGRES_PASSWORD=admin
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - loja-veloz-net
+
+networks:
+  loja-veloz-net:
+
+volumes:
+  pgdata:
