@@ -110,7 +110,7 @@ A infraestrutura é descrita utilizando **Terraform**, mesmo que em nível de es
 
 O vídeo de apresentação do projeto está disponível no link abaixo:
 
-🔗 *(inserir link do YouTube – não listado)*
+🔗 https://youtu.be/g4lckGu5Edk
 
 ---
 
